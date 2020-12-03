@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- CSS Login -->
+    <link rel="stylesheet" type="text/css" href="login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="login/css/main.css">
+
+    <!-- Sweet Alert -->
+    <script src="alert/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="alert/sweetalert.css">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="swiper/swiper-bundle.min.css">
+
+    <!-- Bottom Menu -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer-menu.css">
+
+    <!-- Tabs Menu -->
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+
+    <title>Manusia Baik</title>
+    <script>
+        $(document).on("pagebeforecreate", function (e) {
+            var page = $(e.target),
+                shared = page.data("share");
+            if (shared) {
+                var panel = $('[data-role="panel"]', shared),
+                    header = $('[data-role="header"]', shared),
+                    footer = $('[data-role="footer"]', shared);
+                panel.clone().appendTo(page)
+                header.clone().appendTo(page)
+                footer.clone().appendTo(page)
+            }
+        });            
+    </script>
+</head>
+
+<body>
+    <!-- Homepage -->
+    <div data-role="page" id="homepage">
+        <div data-role="header" class="header">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a class="navbar-brand mx-auto d-block text-center">
+                    <span class="text-light">#OrangBaik</span>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-t-20 p-b-45">
+                                Mari berdonasi
+                            </span>
+                            <!-- Slider main container -->
+                            <div class="swiper-container">
+                                <!-- Additional required wrapper -->
+                                <div class="swiper-wrapper">
+                                    <!-- Slides -->
+                                    <div class="swiper-slide"><img src="img/donation.png" class="slide-image" alt="">
+                                    </div>
+                                    <div class="swiper-slide"><img src="img/donation.png" class="slide-image" alt="">
+                                    </div>
+                                    <div class="swiper-slide"><img src="img/donation.png" class="slide-image" alt="">
+                                    </div>
+                                </div>
+                                <!-- If we need pagination -->
+                                <div class="swiper-pagination"></div>
+                            </div>
+                            <div class="container-login100-form-btn p-t-30">
+                                <a href="#login" data-transition="slideup" class="login100-form-btn m-b-5">
+                                    Masuk
+                                </a>
+                                <a href="#daftar" data-transition="slideup" class="login100-form-btn m-t-5 btn-daftar">
+                                    Daftar
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div data-role="page" id="login">
+        <div data-role="header" class="header">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#homepage" data-transition="slideup" data-direction="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span
+                            class="m-l-10">Masuk</span></div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-t-20 p-b-45">
+                                Masuk untuk menikmati kemudahan berdonasi.
+                            </span>
+                            <div class="wrap-input100 validate-input" data-validate="Email is required">
+                                <input data-wrapper-class="input100" type="text" name="username"
+                                    placeholder="Email/Nomor Hp">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <input data-wrapper-class="input100" type="password" name="pass" placeholder="Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+
+                            <div class="container-login100-form-btn p-t-10">
+                                <a href="#home" data-transition="slideup" class="login100-form-btn">
+                                    Masuk
+                                </a>
+                            </div>
+
+                            <div class="text-center w-full p-t-25 p-b-25 txt1">
+                                Lupa Email / Password?
+                                <a href="#reset" data-transition="slideup" class="txt1">
+                                    Reset
+                                </a>
+                            </div>
+
+                            <div class="text-center w-full txt1">
+                                Belum punya akun?
+                                <a href="#daftar" data-transition="slideup" class="txt1">
+                                    Daftar
+                                    <i class="fa fa-long-arrow-right"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Page -->
+    <div data-role="page" id="reset">
+        <div data-role="header" class="header">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#login" data-transition="slideup" data-direction="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Lupa
+                            Password</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-b-25">
+                                Reset password
+                            </span>
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <input data-wrapper-class="input100" type="text" name="pass" placeholder="Nomor Hp">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </span>
+                            </div>
+                            <div class="container-login100-form-btn p-t-10">
+                                <a href="#" id="reset-password" class="login100-form-btn">
+                                    Reset Password
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div data-role="page" id="daftar">
+        <div data-role="header" class="header">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#homepage" data-transition="slideup" data-direction="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span
+                            class="m-l-10">Daftar</span></div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main">
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100 p-t-20 p-b-30">
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title p-t-20 p-b-45">
+                                Mulai jadi #OrangBaik sekarang
+                            </span>
+                            <div class="wrap-input100 validate-input" data-validate="Nama wajib diisi">
+                                <input data-wrapper-class="input100" type="text" name="nama" placeholder="Nama">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+                            <div class="wrap-input100 validate-input" data-validate="Email wajib diisi">
+                                <input data-wrapper-class="input100" type="text" name="email" placeholder="Email">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
+                            <div class="wrap-input100 validate-input" data-validate="Password wajib diisi">
+                                <input data-wrapper-class="input100" type="password" name="pass" placeholder="Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+                            <div class="container-login100-form-btn p-t-10">
+                                <a href="#" id="btn-daftar" class="login100-form-btn">
+                                    Daftar
+                                </a>
+                            </div>
+                            <div class="text-center w-full p-t-25">
+                                <div class="txt1">
+                                    Sudah punya akun?
+                                    <a href="#login" data-transition="slideup" class="txt1">
+                                        Login
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="home" data-share="#shared">
+        <div data-role="main" class="ui-content">
+            <form>
+                <div class="input-group d-flex justify-content-center">
+                    <input type="text" data-wrapper-class="search-bar" name="q" class="form-control sear"
+                        placeholder="Cari orang yang ingin dibantu" required>
+                    <div class="input-group-append search-btn">
+                        <button class="btn btn-secondary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div data-role="tabs" id="tabs">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#all-cat" data-ajax="false">Semua</a></li>
+                        <li><a href="#two" data-ajax="false">Kesehatan</a></li>
+                        <li><a href="ajax-content.html" data-ajax="false">Bencana</a></li>
+                        <li><a href="ajax-content.html" data-ajax="false">Pendidikan</a></li>
+                    </ul>
+                </div>
+                <div id="all-cat" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="listview image-listview media mb-2">
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                    <div class="progress" style="height: 0.2rem;">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="info-donasi">
+                                        <div class="row">
+                                            <div class="col">Terkumpul</div>
+                                            <div class="col text-right">Sisa Hari</div>
+                                            <div class="w-100"></div>
+                                            <div class="col font-weight-bold">Rp 150.000.000</div>
+                                            <div class="col-4 font-weight-bold text-right">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                    <div class="progress" style="height: 0.2rem;">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="info-donasi">
+                                        <div class="row">
+                                            <div class="col">Terkumpul</div>
+                                            <div class="col text-right">Sisa Hari</div>
+                                            <div class="w-100"></div>
+                                            <div class="col font-weight-bold">Rp 150.000.000</div>
+                                            <div class="col-4 font-weight-bold text-right">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                    <div class="progress" style="height: 0.2rem;">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="info-donasi">
+                                        <div class="row">
+                                            <div class="col">Terkumpul</div>
+                                            <div class="col text-right">Sisa Hari</div>
+                                            <div class="w-100"></div>
+                                            <div class="col font-weight-bold">Rp 150.000.000</div>
+                                            <div class="col-4 font-weight-bold text-right">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                    <div class="progress" style="height: 0.2rem;">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="info-donasi">
+                                        <div class="row">
+                                            <div class="col">Terkumpul</div>
+                                            <div class="col text-right">Sisa Hari</div>
+                                            <div class="w-100"></div>
+                                            <div class="col font-weight-bold">Rp 150.000.000</div>
+                                            <div class="col-4 font-weight-bold text-right">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                    <div class="progress" style="height: 0.2rem;">
+                                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="info-donasi">
+                                        <div class="row">
+                                            <div class="col">Terkumpul</div>
+                                            <div class="col text-right">Sisa Hari</div>
+                                            <div class="w-100"></div>
+                                            <div class="col font-weight-bold">Rp 150.000.000</div>
+                                            <div class="col-4 font-weight-bold text-right">10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Campaign -->
+    <div data-role="page" id="detail-campaign">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#home" data-transition="slideup" data-direction="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Sedekah
+                            Jariyah</span></div>
+                </a>
+                <div class="navbar-right">
+                    <a href="#laporkan-campaign" data-transition="slideup" class="btn laporkan"><i class="fas fa-flag"
+                            style="color:#f9f9f9"></i><span class="text-light"> Laporkan</span></a>
+                </div>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content" style="padding:0;">
+            <div class="thumbnail">
+                <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg" class="img-fluid"
+                    alt="Responsive image">
+            </div>
+            <div class="deskripsi">
+                <div class="judul-campaign">
+                    <span class="section-title">Sedekah Jariyah 10.000 Qur'an untuk Korban Bencana</span>
+                </div>
+                <div class="info-campaign">
+                    <div class="row">
+                        <div class="col">Terkumpul</div>
+                        <div class="col text-right">Target</div>
+                        <div class="w-100"></div>
+                        <div class="col total-donation font-weight-bold text-primary">Rp 150.000.000</div>
+                        <div class="col font-weight-bold text-right">Rp 200.000.000</div>
+                    </div>
+                    <div class="progress mt-2 mb-2" style="height: 0.5rem;">
+                        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+                            aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <span class="font-weight-bold">5.000</span> donasi
+                        </div>
+                        <div class="col text-right">
+                            <span class="font-weight-bold">51</span> hari lagi
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div data-role="tabs" id="tabs">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#deskripsi" data-ajax="false">Deskripsi</a></li>
+                            <li><a href="#deskripsi" data-ajax="false">Lokasi</a></li>
+                            <li><a href="#tentang" data-ajax="false">Tentang</a></li>
+                            <li><a href="#donatur" data-ajax="false">Donatur</a></li>
+                        </ul>
+                    </div>
+                    <div id="deskripsi" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                        <div class="deskripsi-campaign">
+                            <div class="section-title">Deskripsi</div>
+                            <p class="mt-4">Sebanyak 163 unit hunian semantara untuk warga Desa Sukamulih, Pasir Madang
+                                dan Cileuksa sudah terbangun. Syukur, sebagian kecil dari mereka sudah memiliki tempat
+                                untuk tinggal dan hidup seperti biasa bersama dengan keluarga.</p>
+                            <p class="mt-4">Adanya program Syiar Qur'an disambut antusias oleh warga yang ingin membaca
+                                Al-Qur'an atau Iqra. 700 paket Qur'an dan Iqro siap didistribusikan untuk mereka.</p>
+                            <p class="mt-4">"Pemberian Qur'an ini sangat membantu kami untuk ibadah. Di Kecamatan
+                                Sukajaya ini juga ada beberapa pesantren yang sangat membutuhkan mushaf Qur'an maupun
+                                Iqro." Ungkap Ustadz Bubun yang biasa mengajar ngaji anak anak.</p>
+                            <p class="mt-4">Kita bisa sangat mudah membaca Al Qur’an yang ada di sudut meja kita. Tapi
+                                masih banyak sekali daerah yang kesulitan menemukan Al-Qur'an, seperti daerah penyintas
+                                bencana. Bahkan bisa jadi menjadi barang yang langka karena semua barang-barang hilang
+                                ketika bencana terjadi.</p>
+                            <p class="mt-4">Melalui program Syiar Qur’an, Rumah Zakat akan mendistribusikan 10.000 paket
+                                Al Qur’an dan Iqro ke wilayah Desa Berdaya (binaan) dan Non Desa Berdaya serta daerah
+                                korban bencana diseluruh Indonesia.</p>
+                        </div>
+                        <div class="update-link mt-4"><a href="#update-campaign" data-transition="slideup">UPDATE
+                                TERKINI</a>
+                        </div>
+                    </div>
+                    <div id="tentang" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                        <div class="penggalang-dana">
+                            <div class="section-title">Tentang Penggalang Dana</div>
+                            <ul class="listview image-listview media mb-2">
+                                <li>
+                                    <a href="#detail-campaign" data-transition="slideup" class="item ui-link">
+                                        <div class="imageWrapper">
+                                            <img src="https://kitabisa-userupload-01.s3-ap-southeast-1.amazonaws.com/_production/user/38314/23_38314_1579585470_579911_s.png"
+                                                alt="image" width="100px" class="imaged img-fluid">
+                                        </div>
+                                        <div>
+                                            <div class="campaign-title">
+                                                <div class="font-weight-bold">Special title treatment</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="donatur" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                        <div class="penggalang-dana">
+                            <div class="section-title">#OrangBaik yang berdonasi</div>
+                            <ul class="listview image-listview mt-2">
+                                <li>
+                                    <div class="item">
+                                        <img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/avatar/avatar3.jpg"
+                                            alt="image" class="image">
+                                        <div class="row donatur">
+                                            <div class="col">Ahmad Maulana</div>
+                                            <div class="w-100"></div>
+                                            <div class="col">Donasi <span class=" font-weight-bold">Rp 50.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/avatar/avatar3.jpg"
+                                            alt="image" class="image">
+                                        <div class="row donatur">
+                                            <div class="col">Ahmad Maulana</div>
+                                            <div class="w-100"></div>
+                                            <div class="col">Donasi <span class=" font-weight-bold">Rp 50.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item">
+                                        <img src="https://mobilekit.bragherstudio.com/view7/assets/img/sample/avatar/avatar3.jpg"
+                                            alt="image" class="image">
+                                        <div class="row donatur">
+                                            <div class="col">Ahmad Maulana</div>
+                                            <div class="w-100"></div>
+                                            <div class="col">Donasi <span class=" font-weight-bold">Rp 50.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <a href="#nominal-donasi" data-transition="slideup" class="btn-donasi btn-block">Ayo, Donasi Sekarang!</a>
+        </div><!-- /footer -->
+    </div>
+
+    <!-- Update Campaign -->
+    <div data-role="page" id="update-campaign">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#" data-rel="back" data-transition="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Update
+                            Terkini</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content" style="padding:0;">
+            <div class="section full mt-2 mb-2">
+                <div class="section-title">Sedekah Jariyah 10.000 Qur'an untuk Korban Bencana</div>
+                <div class="content-header mb-05">Update terkini campaign ini</div>
+                <div class="wide-block">
+                    <!-- timeline -->
+                    <div class="timeline timed">
+                        <div class="item">
+                            <span class="time">18 hari lalu</span>
+                            <div class="dot bg-primary"></div>
+                            <div class="content">
+                                <img src="https://img.kitabisa.cc/size/816/e6a50861-5018-4b28-84b0-b72d3511faf4.jpg"
+                                    alt="avatar" class="img-fluid mb-1">
+                                <h4 class="title text-primary">Syiar Qur'an di Desa Pasca Bencana</h4>
+                                <div class="text">
+                                    <p>Cirebon, Jumat (30/10). Tim Relawan Nusantara Cirebon menyampaikan amanah Rumah
+                                        Zakat untuk menyalurkan paket Syiar Qur'an di dua lokasi pasca bencana banjir
+                                        pada tahun 2019 dan awal tahun 2020.</p>
+                                    <p>Sebanyak 50 paket al Qur'an dan Iqra' disalurkan ke Mushola Syekh Nurjati
+                                        Abdullah, di Desa Kalisapu Kec. Gunung Jati, Kab. Cirebon dan Mushola
+                                        Nurussa'adah, Desa Silihasih Blok Kapling Dusun Kaligandu Kab. Cirebon.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <span class="time">Sebulan lalu</span>
+                            <div class="dot bg-danger"></div>
+                            <div class="content">
+                                <h4 class="title text-danger">Pencairan Dana Rp 75.044.101</h4>
+                                <div class="text">
+                                    <p>ke rekening BCA *** **** **** **** 6001 a/n YAY RUMAH ZAKAT INDONESI</p>
+                                    <p>Rencana penggunaan dana: Untuk berikan Al Qur'an Iqro ke daerah terdampak bencana
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="dot bg-success"></div>
+                            <div class="content">
+                                <img src="https://img.kitabisa.cc/size/1000/b5b35909-d698-4f87-8e89-8b6111568e66.jpg"
+                                    alt="avatar" class="imaged w100 mb-1">
+                                <h4 class="title text-success">Road Trip to Texas</h4>
+                                <div class="text">This is a timeline text</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- * timeline -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Nominal Donasi -->
+    <div data-role="page" id="nominal-donasi">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#" data-rel="back" data-transition="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Nominal
+                            Donasi</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="section full mt-2 mb-2">
+                <div class="nominal-donasi">
+                    <label for="">Nominal Donasi</label>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true"
+                        class="d-flex flex-row justify-content-center donasi-cepat">     
+                        <input type="radio" name="nominal-donasi" id="radio-choice-c" value="10000">
+                        <label for="radio-choice-c">Rp10.000</label>
+                        <input type="radio" name="nominal-donasi" id="radio-choice-d" value="50000">
+                        <label for="radio-choice-d">Rp50.000</label>
+                        <input type="radio" name="nominal-donasi" id="radio-choice-e" value="100000">
+                        <label for="radio-choice-e">Rp100.000</label>
+                    </fieldset>
+                    <div class="update-link mt-4">atau</div>
+                    <div class="mb-3 d-flex flex-row justify-content-center">
+                        <div class="input-group-prepend mt-2 mb-2">
+                            <span class="input-group-text">Rp</span>
+                        </div>
+                        <input type="number" name="nominal-donasi" pattern="[0-9]*" id="form-nominal-donasi">
+                    </div>
+                </div>
+                <label for="">Metode Pembayaran</label>
+                <div id="metode-pembayaran" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="listview image-listview media mb-2">
+                        <li class="list-group">
+                            <a href="#" data-transition="slideup"
+                                class="item list-group-item list-group-item-action p-2 metode-pembayaran">
+                                <div class="imageWrapper w-25">
+                                    <img src="https://logos-download.com/wp-content/uploads/2017/03/BCA_logo_Bank_Central_Asia.png"
+                                        alt="image" class="img-fluid">
+                                </div>
+                                <div class="campaign-title mb-0">
+                                    <div class="font-weight-bold">BCA Virtual Account</div>
+                                </div>
+                            </a>
+                            <a href="#" data-transition="slideup"
+                                class="item list-group-item list-group-item-action p-2 metode-pembayaran">
+                                <div class="imageWrapper w-25">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_BRI.png"
+                                        alt="image" class="img-fluid">
+                                </div>
+                                <div class="campaign-title mb-0">
+                                    <div class="font-weight-bold">BRI Virtual Account</div>
+                                </div>
+                            </a>
+                            <a href="#" data-transition="slideup"
+                                class="item list-group-item list-group-item-action p-2 metode-pembayaran">
+                                <div class="imageWrapper w-25">
+                                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/BankNegaraIndonesia46-logo.svg/1280px-BankNegaraIndonesia46-logo.svg.png"
+                                        alt="image" class="img-fluid">
+                                </div>
+                                <div class="campaign-title mb-0">
+                                    <div class="font-weight-bold">BNI Virtual Account</div>
+                                </div>
+                            </a>
+                            <a href="#" data-transition="slideup"
+                                class="item list-group-item list-group-item-action p-2 metode-pembayaran">
+                                <div class="imageWrapper w-25">
+                                    <img src="https://logos-download.com/wp-content/uploads/2016/06/Mandiri_logo.png"
+                                        alt="image" class="img-fluid">
+                                </div>
+                                <div class="campaign-title mb-0">
+                                    <div class="font-weight-bold">Mandiri Virtual Account</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <a href="#halaman-donasi" data-transition="slideup" class="btn-donasi btn-block">Lanjutkan Pembayaran</a>
+        </div><!-- /footer -->
+    </div>
+
+    <!-- Halaman Donasi -->
+    <div data-role="page" id="halaman-donasi">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#" data-rel="back" data-transition="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Halaman
+                            Donasi</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="section full mt-2 mb-2">
+                <div class="card border-secondary">
+                    <div class="card-body alert-dark text-center">
+                        <span class="text-center">
+                            Segera Transfer Dalam Waktu
+                        </span>
+                        <p class="waktu-transfer">
+                            <span class="jam">24</span> Jam : <span class="menit">00</span> Menit : <span
+                                class="detik">00</span> Detik
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <span class="section-title pl-0 mt-4">
+                Transfer ke:
+            </span>
+            <ul class="listview image-listview media mb-2">
+                <li class="list-group">
+                    <div class="item p-2 d-flex justify-content-between">
+                        <div class="imageWrapper w-25">
+                            <img src="https://logos-download.com/wp-content/uploads/2017/03/BCA_logo_Bank_Central_Asia.png"
+                                alt="image" class="img-fluid">
+                        </div>
+                        <div class="campaign-title mb-0">
+                            <div class="font-weight-bold va"></div>
+                        </div>
+                        <a href="#" onclick="copyToClipboard('.va')" class="text-right"><i class="fas fa-copy"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <span class="section-title pl-0 mt-4">
+                Nominal Transfer:
+            </span>
+            <ul class="listview image-listview media mb-2">
+                <li class="list-group">
+                    <div class="item p-2 d-flex justify-content-between">
+                        <div class="campaign-title mb-0">
+                            <div class="font-weight-bold">Rp.100.000</div>
+                        </div>
+                        <a href="#" onclick="copyToClipboard('.va')" class="text-right"><i class="fas fa-copy"></i></a>
+                    </div>
+                </li>
+            </ul>
+            <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" class="mt-4">
+                <h4>Detail donasi</h4>
+                <div id="all-cat" class="ui-body-d ui-content" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="listview image-listview media mb-2">
+                        <li>
+                            <a href="#detail-campaign" data-transition="slideup" class="item">
+                                <div class="imageWrapper">
+                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&w=214&auto=format,compress"
+                                        alt="image" class="imaged img-fluid">
+                                </div>
+                                <div>
+                                    <div class="campaign-title">
+                                        <div class="font-weight-bold">Special title treatment</div>
+                                    </div>
+                                    <div class="lembaga">
+                                        <div class="font-weight-light">Rumah Zakat</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <a href="#nominal-donasi" data-transition="slideup" class="btn-donasi btn-block">Cek Status Pembayaran</a>
+        </div><!-- /footer -->
+    </div>
+
+    <!-- Laporkan Campaign -->
+    <div data-role="page" id="laporkan-campaign">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#" data-rel="back" data-transition="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span
+                            class="m-l-10">Laporkan</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="section-title mb-4">Laporkan Penyalahgunaan Dana</div>
+            <form>
+                <label for="nama-laporan">Nama Lengkap</label>
+                <input type="text" name="nama-laporan" id="nama-laporan" placeholder="masukkan nama...">
+                <label for="nomor-laporan">Nomor Hp</label>
+                <input type="number" name="nomor-laporan" pattern="[0-9]*" id="nomor-laporan"
+                    placeholder="masukkan nomor handphone...">
+                <label for="email-laporan">Email Aktif</label>
+                <input type="text" name="email-laporan" id="email-laporan" placeholder="masukkan email aktif...">
+                <label for="kategori-laporan">Kategori Pelanggaran</label>
+                <select name="kategori-laporan" id="kategori-laporan" data-native-menu="false">
+                    <option>Kategori Pelanggaran</option>
+                    <option value="penyalahgunaan dana">Penyalahgunaan Dana</option>
+                    <option value="informasi palsu">Informasi Palsu</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+                <label for="detail-laporan">Detail Laporan</label>
+                <textarea cols="40" rows="8" name="detail-laporan" id="detail-laporan"></textarea>
+                <label for="bukti-laporan">Upload Bukti</label>
+                <input type="file" name="bukti-laporan" id="bukti-laporan" value="">
+                <a href="#laporan-diterima" data-transition="slideup" class="btn-donasi ui-btn ui-shadow">Kirim</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Laporan Diterima -->
+    <div data-role="page" id="laporan-diterima">
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a href="#home" data-rel="back" data-transition="reverse" class="navbar-brand">
+                    <div class="text-light text-header"><i class="fas fa-arrow-left"></i> <span class="m-l-10">Laporan
+                            Diterima</span>
+                    </div>
+                </a>
+            </nav>
+        </div>
+        <div data-role="main" class="ui-content">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Laporan Sudah Kami Terima</h5>
+                    <p class="card-text">Terima kasih atas partisipasinya. Laporan Anda sudah kami terima dan akan
+                        segera kami proses.</p>
+                    <div class="text-center">
+                        <a href="#home" class="btn btn-primary text-light mt-2">Menuju Halaman Awal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Page -->
+    <div data-role="page" id="donasi" data-share="#shared">
+        <div data-role="main" class="ui-content">
+            <div data-role="tabs" id="tabs">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#menunggu-pembayaran" data-ajax="false">Menunggu</a></li>
+                        <li><a href="#pembayaran-berhasil" data-ajax="false">Berhasil</a></li>
+                        <li><a href="#pembayaran-gagal" data-ajax="false">Gagal</a></li>
+                    </ul>
+                </div>
+                <div id="menunggu-pembayaran" class="ui-body-d ui-content"
+                    style="padding-left: 0px;padding-right: 0px;">
+                    <div class="wide-block pt-2 pb-2">
+                        <!-- Donation List -->
+                        <div class="comment-block">
+                            <!--item -->
+                            <div class="item">
+                                <div class="avatar">
+                                    <img src="https://kitabisa-userupload-01.s3-ap-southeast-1.amazonaws.com/_production/user/38314/23_38314_1579585470_579911_s.png"
+                                        alt="avatar" class="imaged w32 rounded">
+                                </div>
+                                <div class="in">
+                                    <div class="comment-header">
+                                        <h4 class="title">Rumah Zakat</h4>
+                                        <span class="time">just now</span>
+                                    </div>
+                                    <div class="text">
+                                        <div class="listview image-listview media mb-2">
+                                            <div>
+                                                <div class="imageWrapper mt-2">
+                                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&amp;w=214&amp;auto=format,compress"
+                                                        alt="image" class="imaged img-fluid">
+                                                </div>
+                                                <div class="campaign-title mt-2">
+                                                    <div class="font-weight-bold">Special title treatment</div>
+                                                </div>
+                                                <div class="info-donasi">
+                                                    <div class="row">
+                                                        <div class="col">Nominal</div>
+                                                        <div class="col text-right">Metode</div>
+                                                        <div class="w-100"></div>
+                                                        <div class="col">Rp 50.000</div>
+                                                        <div class="col-5 text-right">BCA VA</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-footer">
+                                        <a href="#halaman-donasi" data-transition="slideup" class="btn btn-sm btn-primary float-right text-light">Donasi Sekarang</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wide-block pt-2 pb-2 mb-4">
+                        <!-- Donation List -->
+                        <div class="comment-block">
+                            <!--item -->
+                            <div class="item">
+                                <div class="avatar">
+                                    <img src="https://kitabisa-userupload-01.s3-ap-southeast-1.amazonaws.com/_production/user/38314/23_38314_1579585470_579911_s.png"
+                                        alt="avatar" class="imaged w32 rounded">
+                                </div>
+                                <div class="in">
+                                    <div class="comment-header">
+                                        <h4 class="title">Rumah Zakat</h4>
+                                        <span class="time">3 Des 2020</span>
+                                    </div>
+                                    <div class="text">
+                                        <div class="listview image-listview media mb-2">
+                                            <div>
+                                                <div class="imageWrapper mt-2">
+                                                    <img src="https://imgix.kitabisa.com/17d7e446-01b7-43ff-bc6d-c5d4f646a170.jpg?ar=16:9&amp;w=214&amp;auto=format,compress"
+                                                        alt="image" class="imaged img-fluid">
+                                                </div>
+                                                <div class="campaign-title mt-2">
+                                                    <div class="font-weight-bold">Special title treatment</div>
+                                                </div>
+                                                <div class="info-donasi">
+                                                    <div class="row">
+                                                        <div class="col">Nominal</div>
+                                                        <div class="col text-right">Metode</div>
+                                                        <div class="w-100"></div>
+                                                        <div class="col">Rp 50.000</div>
+                                                        <div class="col-5 text-right">BCA VA</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-footer">
+                                        <a href="#halaman-donasi" class="btn btn-sm btn-primary float-right text-light">Donasi Sekarang</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div data-role="page" id="pesan" data-share="#shared">
+        <div data-role="main" class="ui-content">
+            <h5 class="mt-1">atau pilih kategori berikut</h5>
+        </div>
+    </div>
+
+    <div data-role="page" id="shared">
+        <div data-role="panel" data-position="right" data-display="overlay" class="akun" data-position-fixed="true">
+            <nav class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <div class="sidebar-header">
+                        <div class="user-pic">
+                            <img class="rounded-circle"
+                                src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                                alt="User picture">
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">Jhon
+                                <strong>Smith</strong>
+                            </span>
+                            <span class="user-role">Administrator</span>
+                            <span class="user-status">
+                                <i class="fa fa-circle"></i>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- sidebar-header  -->
+                    <div class="list-group list-group-flush">
+                        <a href="#login" class="list-group-item list-group-item-action bg-light">
+                            <i class="fa fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                        <span class="badge badge-pill badge-warning notification">3</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-envelope"></i>
+                        <span class="badge badge-pill badge-success notification">7</span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-cog"></i>
+                        <span class="badge-sonar"></span>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div data-role="header" class="header" data-position="fixed">
+            <nav class="navbar navbar-dark justify-content-between">
+                <a class="navbar-brand">
+                    <span class="text-light">#OrangBaik</span>
+                </a>
+                <div class="navbar-right">
+                    <a class="btn btn-account"><i class="fas fa-user-alt" style="color:#f9f9f9"></i><span
+                            class="text-light"> Akun</span></a>
+                </div>
+            </nav>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <nav class="nav">
+                <a href="#home" class="nav__link nav__link--active">
+                    <i class="material-icons nav__icon">dashboard</i>
+                    <span class="nav__text">Dashboard</span>
+                </a>
+                <a href="#donasi" class="nav__link">
+                    <i class="material-icons nav__icon">attach_money</i>
+                    <span class="nav__text">Donasi</span>
+                </a>
+                <a href="#pesan" class="nav__link">
+                    <i class="material-icons nav__icon">devices</i>
+                    <span class="nav__text">Devices</span>
+                </a>
+                <a href="#akun" class="nav__link">
+                    <i class="material-icons nav__icon">lock</i>
+                    <span class="nav__text">Privacy</span>
+                </a>
+            </nav>
+            <!-- /navbar -->
+        </div><!-- /footer -->
+    </div>
+
+    <!-- PANEL ACCOUNT -->
+
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script src="swiper/swiper-bundle.min.js"></script>
+    <script>
+        //Panel
+        $(document).on('click', '.btn-account', function () {
+            $('.akun:visible').panel("open");
+        });
+
+        //Sweet Alert
+        //Pop Up Nomor hp        
+        $("#btn-daftar").on("click", function () {
+            /* global Swal */
+
+            const steps = ['1', '2'];
+            const title = [
+                '<strong>Konfirmasi Nomor Hp</strong>'
+                ,
+                '<strong>Masukkan OTP</strong>'
+            ];
+            const html = [
+                '<p>Masukkan nomor Anda untuk verifikasi. Kode verifikasi akan kami kirim melalui SMS, mohon tunggu.</p>'
+                ,
+                '<p>Masukkan kode OTP yang telah kami kirimkan melalui SMS. JANGAN berikan kode tersebut kepada SIAPAPUN.</p><div class="text-center mt-2 mb-3"></div>'
+            ];
+            const swalQueueStep = Swal.mixin({
+                cancelButtonText: 'Edit Nomor',
+                confirmButtonText: 'Selanjutnya',
+                progressSteps: steps,
+                input: 'text',
+                inputAttributes: {
+                    required: true,
+                },
+                allowOutsideClick: false,
+                validationMessage: 'Form wajib diisi!',
+                onOpen: () => Swal.getConfirmButton().focus(),
+            })
+
+            async function backAndForth() {
+                const values = []
+                let currentStep
+
+                for (currentStep = 0; currentStep < steps.length;) {
+                    const result = await swalQueueStep.fire({
+                        title: title[currentStep],
+                        html: html[currentStep],
+                        inputValue: values[currentStep],
+                        showCancelButton: currentStep > 0,
+                        showCloseButton: currentStep < 1,
+                        inputPlaceholder: currentStep == 0 ? "Masukkan Nomor Hp" : "••••••",
+                        currentProgressStep: currentStep,
+                        showClass: {
+                            popup: 'animated fadeInUpBig faster',
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutDownBig faster'
+                        },
+                    })
+
+                    if (result.value) {
+                        values[currentStep] = result.value
+                        currentStep++
+                    } else if (result.dismiss === 'cancel') {
+                        currentStep--
+                    } else {
+                        break
+                    }
+                }
+
+                if (currentStep === steps.length) {
+                    Swal.fire({
+                        title: "BERHASIL!",
+                        text: "Akun Anda berhasil dibuat",
+                        icon: "success"
+                    }).then(function () {
+                        window.location.href = '#login';
+                    });
+                }
+            }
+            backAndForth()
+        });
+
+        //Reset Password
+        $("#reset-password").on("click", function () {
+            /* global Swal */
+
+            const steps = ['1', '2'];
+            const title = [
+                '<strong>Masukkan Kode</strong>'
+                ,
+                '<strong>Password Baru</strong>'
+            ];
+            const html = [
+                '<p>Masukkan kode yang telah kami kirimkan melalui SMS. JANGAN berikan kode tersebut kepada SIAPAPUN.</p>'
+                ,
+                '<p>Masukkan password baru Anda.</p><div class="text-center mt-2 mb-3"></div>'
+            ];
+            const swalQueueStep = Swal.mixin({
+                confirmButtonText: 'Selanjutnya',
+                progressSteps: steps,
+                inputAttributes: {
+                    required: true,
+                },
+                allowOutsideClick: false,
+                validationMessage: 'Form wajib diisi!',
+                onOpen: () => Swal.getConfirmButton().focus(),
+            })
+
+            async function backAndForth() {
+                const values = []
+                let currentStep
+
+                for (currentStep = 0; currentStep < steps.length;) {
+                    const result = await swalQueueStep.fire({
+                        title: title[currentStep],
+                        html: html[currentStep],
+                        inputValue: values[currentStep],
+                        showCloseButton: currentStep < 1,
+                        input: currentStep == 0 ? "text" : "password",
+                        inputPlaceholder: currentStep == 0 ? "Masukkan Kode" : "Masukkan Password Baru",
+                        currentProgressStep: currentStep,
+                        showClass: {
+                            popup: 'animated fadeInUpBig faster',
+                        },
+                        hideClass: {
+                            popup: 'animated fadeOutDownBig faster'
+                        },
+                    })
+
+                    if (result.value) {
+                        values[currentStep] = result.value
+                        currentStep++
+                    } else if (result.dismiss === 'cancel') {
+                        currentStep--
+                    } else {
+                        break
+                    }
+                }
+
+                if (currentStep === steps.length) {
+                    Swal.fire({
+                        title: "BERHASIL!",
+                        text: "Password Anda berhasil diperbarui",
+                        icon: "success"
+                    }).then(function () {
+                        window.location.href = '#login';
+                    });
+                }
+            }
+            backAndForth()
+        });
+
+        //Nominal Donasi Cepat
+        $(".donasi-cepat").on("click", function () {
+            //Reset input form nominal donasi
+            $("#form-nominal-donasi").val("");
+        });
+        //Nominal Donasi
+        $("#form-nominal-donasi").on("click", function () {
+            //Reset nominal donasi cepat            
+            $("label").removeClass("ui-btn-active");
+        });
+        //Metode Pembayaran                    
+        $(".metode-pembayaran").on("click", function () {
+            $(".metode-pembayaran").removeClass("active");
+            $(".metode-pembayaran").children(".campaign-title").removeClass("text-light");
+            $(this).addClass("active");
+            $(this).children(".campaign-title").addClass("text-light");
+        });
+        //Batas Waktu
+        $(document).delegate("#halaman-donasi", "pageinit", function () {
+            var counter = 24 * 60 * 60;
+            interval = setInterval(function () {
+                counter--;
+                if (counter <= 0) {
+                    stopTimer();
+                } else {
+                    timerOTP(counter);
+                }
+            }, 1000);
+            $(".va").html(Math.floor(1000000000000 + Math.random() * 900000000));
+        });
+        //Copy to clipboard
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+
+        //OTP Timer
+        var interval;
+        function timerOTP(counter) {
+            let jam = timerDigit(Math.floor(counter / 3600));
+            let menit = timerDigit(Math.floor((counter - (jam * 3600)) / 60));
+            let detik = timerDigit(counter - ((jam * 3600) + (menit * 60)));
+            // Display 'counter' wherever you want to display it.
+            $('.jam').text(jam);
+            $('.menit').text(menit)
+            $('.detik').text(detik);
+        }
+        function timerDigit(time) {
+            return (time < 10 ? '0' : '') + time;
+        }
+        function stopTimer() {
+            clearInterval(interval);
+            $('.jam').text("24")
+            $('.menit').text("00");
+            $('.detik').text("00");
+        }
+        $(".kirim-otp").on('click', function () {
+            $("#nomor").text($(".nomor").val());
+            $("#timer").removeClass("d-none");
+            $("#kirim-ulang").addClass("d-none");
+            var counter = 90;
+            interval = setInterval(function () {
+                counter--;
+                if (counter <= 0) {
+                    stopTimer();
+                    $("#timer").toggleClass("d-none");
+                    $("#kirim-ulang").toggleClass("d-none");
+                } else {
+                    timerOTP(counter);
+                }
+            }, 1000);
+        });
+        $("#edit-nomor").on("click", function (e) {
+            alert('ok');
+            // stopTimer();
+        });
+    </script>
+</body>
+
+</html>
